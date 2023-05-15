@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6khykbsyp3wo"]
+
+[ext_resource type="Script" path="res://scripts/enemies.gd" id="1_grvx0"]
+[ext_resource type="Texture2D" uid="uid://ckrgcpk1h6pil" path="res://assets/bill_balle_1.png" id="2_w2wrk"]
+[ext_resource type="Texture2D" uid="uid://bth2oqeq476ur" path="res://assets/bill_balle_2.png" id="3_iobop"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_va1ha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w2wrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iobop")
+}],
+"loop": true,
+"name": &"Enemy1",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60l6p"]
+size = Vector2(64, 56)
+
+[node name="Enemies" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 2
+script = ExtResource("1_grvx0")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_va1ha")
+animation = &"Enemy1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(36, 0)
+shape = SubResource("RectangleShape2D_60l6p")

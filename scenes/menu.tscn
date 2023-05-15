@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://b74pfq7lqtwdo"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_8e4ah"]
+[ext_resource type="Texture2D" uid="uid://d4d7yxr0m4p34" path="res://assets/background.png" id="2_1fe88"]
+[ext_resource type="Theme" uid="uid://cdjvvbt3irciw" path="res://themes/menu.tres" id="3_cuhtp"]
+[ext_resource type="PackedScene" uid="uid://ckxcrx3u2y22v" path="res://scenes/menu_slime.tscn" id="4_lq328"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8e4ah")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(502, 336)
+texture = ExtResource("2_1fe88")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -50.5
+offset_right = 51.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme = ExtResource("3_cuhtp")
+text = "Commencer"
+
+[node name="SlimeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_cuhtp")
+text = "Slimes"
+
+[node name="DifficultyButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_cuhtp")
+text = "Difficulté"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme = ExtResource("3_cuhtp")
+text = "Quitter"
+
+[node name="GreenSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(334, 554)
+
+[node name="RedSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(861, 437)
+sprite_name = "Red"
+
+[node name="GreySlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(576, 572)
+sprite_name = "Grey"
+
+[node name="YellowSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(472, 464)
+sprite_name = "Yellow"
+
+[node name="OrangeSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(219, 492)
+sprite_name = "Orange"
+
+[node name="BrownSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(722, 520)
+sprite_name = "Brown"
+
+[node name="BlueSlime" parent="." instance=ExtResource("4_lq328")]
+position = Vector2(737, 391)
+sprite_name = "Blue"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

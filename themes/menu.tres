@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cdjvvbt3irciw"]
+
+[ext_resource type="FontFile" uid="uid://djn74efdnxprr" path="res://assets/font/LEMONMILK-Bold.otf" id="1_ee2kk"]
+
+[resource]
+default_font = ExtResource("1_ee2kk")
+default_font_size = 20
