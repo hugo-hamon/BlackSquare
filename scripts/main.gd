@@ -4,12 +4,7 @@ extends Node2D
 @onready var max_score_label: Label = get_node("MaxScoreLabel")
 @onready var time_label: Label = get_node("TimeLabel")
 @onready var background: ColorRect = get_node("BackgroundColor")
-
-const SAVE_FILE = "user://save_file.save"
-var g_data = {
-	"max_score": 0,
-	"coins": 0
-}
+@onready var save_file = SaveFile.g_data
 
 var score = 0
 var time = 0
@@ -45,8 +40,7 @@ var enemy_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_data()
-	max_score_label.set_text("Max Score: " + str(g_data["max_score"]))
+	max_score_label.set_text("Max Score: " + str(save_file.max_score))
 
 	enemy_scene = load("res://scenes/enemies.tscn")
 	spawn_timer = get_node("EnemiesTimer")
@@ -92,7 +86,7 @@ func place_labels() -> void:
 	var score_label_position = Vector2(window_size.x / 2 - score_label_size.x / 2, 30)
 	score_label.set_position(score_label_position)
 
-	var max_score_label_size  = max_score_label.get_size()
+	var max_score_label_size = max_score_label.get_size()
 	var max_score_label_position = Vector2(30, 30)
 	max_score_label.set_position(max_score_label_position)
 
@@ -115,11 +109,11 @@ func _on_spawn_timer_timeout() -> void:
 # Reset the game to the initial state
 func game_over() -> void:
 	# Save the max score
-	g_data["max_score"] = score if score > g_data["max_score"] else g_data["max_score"]
-	g_data["coins"] += score
-	save_data()
-	max_score_label.set_text("Max Score: " + str(g_data["max_score"]))
-	
+	save_file.max_score = score if score > save_file.max_score else save_file.max_score
+	save_file.coins += score
+	SaveFile.save_data()
+	max_score_label.set_text("Max Score: " + str(save_file.max_score))
+
 	score = 0
 	background_color_index = 1
 	score_label.set_text("Score: " + str(score))
@@ -137,31 +131,13 @@ func game_over() -> void:
 	# Reset the game timer
 	time = 0
 	time_label.set_text("Time: 0s")
-	
+
 
 # Update the background color every 20 score points
 func update_background_color() -> void:
 	var new_color = background_colors[background_color_index]
 	background_color_index = (background_color_index + 1) % background_colors.size()
 	background.set_color(new_color)
-
-
-# Load the data from the save file
-func load_data():
-	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
-	if file == null:
-		save_data()
-	else:
-		file.open(SAVE_FILE, FileAccess.READ)
-		g_data = file.get_var()
-		file.close()
-
-
-# Save the data to the save file
-func save_data():
-	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
-	file.store_var(g_data)
-	file.close()
 
 
 # Update the time label

@@ -83,6 +83,7 @@ position = Vector2(737, 391)
 sprite_name = "Blue"
 
 [node name="CoinsLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 894.0
 offset_top = 12.0
 offset_right = 913.0
@@ -96,4 +97,5 @@ scale = Vector2(4, 4)
 texture = ExtResource("5_dl1xm")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SlimeButton" to="." method="_on_slime_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
