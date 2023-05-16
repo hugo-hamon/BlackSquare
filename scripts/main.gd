@@ -7,7 +7,8 @@ extends Node2D
 
 const SAVE_FILE = "user://save_file.save"
 var g_data = {
-	"max_score": 0
+	"max_score": 0,
+	"coins": 0
 }
 
 var score = 0
@@ -114,11 +115,11 @@ func _on_spawn_timer_timeout() -> void:
 # Reset the game to the initial state
 func game_over() -> void:
 	# Save the max score
-	if score > g_data["max_score"]:
-		print("ok")
-		g_data["max_score"] = score
-		save_data()
-		max_score_label.set_text("Max Score: " + str(g_data["max_score"]))
+	g_data["max_score"] = score if score > g_data["max_score"] else g_data["max_score"]
+	g_data["coins"] += score
+	save_data()
+	max_score_label.set_text("Max Score: " + str(g_data["max_score"]))
+	
 	score = 0
 	background_color_index = 1
 	score_label.set_text("Score: " + str(score))
@@ -149,7 +150,6 @@ func update_background_color() -> void:
 func load_data():
 	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
 	if file == null:
-		g_data = {"max_score": 0}
 		save_data()
 	else:
 		file.open(SAVE_FILE, FileAccess.READ)

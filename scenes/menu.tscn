@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b74pfq7lqtwdo"]
+[gd_scene load_steps=6 format=3 uid="uid://b74pfq7lqtwdo"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_8e4ah"]
 [ext_resource type="Texture2D" uid="uid://d4d7yxr0m4p34" path="res://assets/background.png" id="2_1fe88"]
 [ext_resource type="Theme" uid="uid://cdjvvbt3irciw" path="res://themes/menu.tres" id="3_cuhtp"]
 [ext_resource type="PackedScene" uid="uid://ckxcrx3u2y22v" path="res://scenes/menu_slime.tscn" id="4_lq328"]
+[ext_resource type="Texture2D" uid="uid://b82v21ydpbj76" path="res://assets/coins.png" id="5_dl1xm"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -15,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_8e4ah")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(502, 336)
+position = Vector2(500, 333.5)
 texture = ExtResource("2_1fe88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -80,6 +81,19 @@ sprite_name = "Brown"
 [node name="BlueSlime" parent="." instance=ExtResource("4_lq328")]
 position = Vector2(737, 391)
 sprite_name = "Blue"
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 894.0
+offset_top = 12.0
+offset_right = 913.0
+offset_bottom = 42.0
+theme = ExtResource("3_cuhtp")
+text = "0"
+
+[node name="Coins" type="Sprite2D" parent="."]
+position = Vector2(867, 27)
+scale = Vector2(4, 4)
+texture = ExtResource("5_dl1xm")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
