@@ -2,7 +2,14 @@ extends Node
 
 const SAVE_FILE = "user://save_file.save"
 var g_data = {}
-var default_g_data = {"max_score": 0, "coins": 0}
+var default_g_data = {
+	"max_score": 0,
+	"last_score": 0,
+	"coins": 0,
+	"slimes": ["green"],
+	"picked_slime": "green",
+	"difficulty": 0,
+}
 
 
 # Load data from file
@@ -23,4 +30,11 @@ func load_data():
 func save_data():
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	file.store_var(g_data)
+	file.close()
+
+
+# Reset data
+func reset_data():
+	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	file.store_var(default_g_data)
 	file.close()

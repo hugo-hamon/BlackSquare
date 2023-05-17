@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg1pdkb76t22u"]
+
+[ext_resource type="Script" path="res://scripts/difficulty_menu.gd" id="1_25fcv"]
+[ext_resource type="Texture2D" uid="uid://d4d7yxr0m4p34" path="res://assets/background.png" id="1_blkmy"]
+[ext_resource type="Theme" uid="uid://cdjvvbt3irciw" path="res://themes/menu.tres" id="3_v64qt"]
+[ext_resource type="Texture2D" uid="uid://b82v21ydpbj76" path="res://assets/coins.png" id="4_05ukv"]
+
+[node name="DifficultyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_25fcv")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(500, 333.5)
+texture = ExtResource("1_blkmy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 397.0
+offset_top = 298.0
+offset_right = 612.0
+offset_bottom = 411.0
+
+[node name="EasyButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../HardButton")
+focus_mode = 0
+theme = ExtResource("3_v64qt")
+theme_override_colors/font_color = Color(0.976471, 0, 0.113725, 1)
+text = "Facile"
+
+[node name="NormalButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("3_v64qt")
+text = "Normal"
+
+[node name="HardButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../EasyButton")
+focus_mode = 0
+theme = ExtResource("3_v64qt")
+text = "Difficile"
+
+[node name="Coins" type="Sprite2D" parent="."]
+position = Vector2(867, 27)
+scale = Vector2(4, 4)
+texture = ExtResource("4_05ukv")
+
+[node name="CoinsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 12.0
+offset_right = 913.0
+offset_bottom = 42.0
+theme = ExtResource("3_v64qt")
+text = "0"
+
+[connection signal="pressed" from="VBoxContainer/EasyButton" to="." method="_on_easy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]

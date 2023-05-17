@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dui0r1n3igbiq"]
+
+[ext_resource type="Script" path="res://scripts/mod_menu.gd" id="1_jhu62"]
+[ext_resource type="Texture2D" uid="uid://d4d7yxr0m4p34" path="res://assets/background.png" id="1_xlpgk"]
+[ext_resource type="Theme" uid="uid://cdjvvbt3irciw" path="res://themes/menu.tres" id="3_1r2c4"]
+[ext_resource type="Texture2D" uid="uid://b82v21ydpbj76" path="res://assets/coins.png" id="3_i2nj0"]
+
+[node name="ModMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jhu62")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(500, 333.5)
+texture = ExtResource("1_xlpgk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 307.0
+offset_right = 622.0
+offset_bottom = 347.0
+
+[node name="CatchTheBallMod" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_1r2c4")
+text = "Attrape la balle"
+
+[node name="DodgeMod" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_1r2c4")
+text = "Esquive la balle"
+
+[node name="Coins" type="Sprite2D" parent="."]
+position = Vector2(867, 27)
+scale = Vector2(4, 4)
+texture = ExtResource("3_i2nj0")
+
+[node name="CoinsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 12.0
+offset_right = 913.0
+offset_bottom = 42.0
+theme = ExtResource("3_1r2c4")
+text = "0"

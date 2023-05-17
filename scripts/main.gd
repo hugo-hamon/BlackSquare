@@ -9,37 +9,21 @@ extends Node2D
 var score = 0
 var time = 0
 var max_score = 0
-var background_color_index = 1
+var background_color_index = 0
 var background_colors = [
-	Color(0.63, 0.91, 0.57),
-	Color(1.0, 0.3, 0.2),
-	Color(0.6, 1, 0.6),
-	Color(1.0, 0.3, 1.0),
-	Color(0.0, 0.5, 0.5),
-	Color(0.75, 0.75, 0.75),
-	Color(0.5, 0.5, 0.5),
-	Color(1.0, 0.85, 1.0),
-	Color(1.0, 1.0, 0.58),
-	Color(0.58, 1.0, 1.0),
-	Color(0.86, 0.86, 0.86),
-	Color(0.66, 0.66, 0.66),
-	Color(0.94, 0.90, 0.54),
-	Color(0.96, 0.96, 0.96),
-	Color(0.43, 0.50, 0.56),
-	Color(0.82, 0.70, 0.54),
-	Color(0.98, 0.94, 0.90),
-	Color(0.41, 0.41, 0.41),
-	Color(0.82, 0.82, 0.82),
-	Color(0.56, 0.93, 0.56)
+	Color(0.63, 0.91, 0.57)
 ]
 
 var spawn_timer: Timer
 var game_timer: Timer
+var reverse_timer: Timer
+var black_screen_timer: Timer
 var enemy_scene: PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$ReverseLabel.hide()
 	max_score_label.set_text("Max Score: " + str(save_file.max_score))
 
 	enemy_scene = load("res://scenes/enemies.tscn")
@@ -52,6 +36,14 @@ func _ready():
 	game_timer.set_wait_time(1)
 	game_timer.timeout.connect(update_time_label)
 	game_timer.start()
+
+	reverse_timer = get_node("ReverseTimer")
+	reverse_timer.set_wait_time(5)
+	reverse_timer.timeout.connect(handle_reverse_input)
+
+	black_screen_timer = get_node("BlackScreenTimer")
+	black_screen_timer.set_wait_time(5)
+	black_screen_timer.timeout.connect(handle_black_screen)
 
 	place_grid_on_screen()
 	place_player_in_grid()
@@ -98,22 +90,44 @@ func place_labels() -> void:
 # Spawn an enemy
 func _on_spawn_timer_timeout() -> void:
 	var enemy = enemy_scene.instantiate()
+	# set enemy ordering z to 1
+	enemy.set_z_index(1)
 	add_child(enemy)
 	score += 1
 	score_label.set_text("Score: " + str(score))
 	if score % 10 == 0:
 		update_background_color()
+	if score % 5 == 0 and save_file.difficulty >= 1:
+		if randi_range(0, 1) == 1:
+			reverse_timer.start()
+			Global.reverse = true
+			$ReverseLabel.show()
+		if save_file.difficulty >= 2 and randi_range(0, 1) == 1:
+			black_screen_timer.start()
+			$BlackScreen.show()
+			
 	spawn_timer.set_wait_time((-1.0 / 100.0) * time + 2)
 
 
+func handle_reverse_input():
+	Global.reverse = false
+	reverse_timer.stop()
+	$ReverseLabel.hide()
+
+func handle_black_screen():
+	black_screen_timer.stop()
+	$BlackScreen.hide()
+
 # Reset the game to the initial state
 func game_over() -> void:
+	handle_death()
+	await get_tree().create_timer(2).timeout
 	# Save the max score
+	save_file.last_score = score
 	save_file.max_score = score if score > save_file.max_score else save_file.max_score
 	save_file.coins += score
 	SaveFile.save_data()
 	max_score_label.set_text("Max Score: " + str(save_file.max_score))
-
 	score = 0
 	background_color_index = 1
 	score_label.set_text("Score: " + str(score))
@@ -131,7 +145,16 @@ func game_over() -> void:
 	# Reset the game timer
 	time = 0
 	time_label.set_text("Time: 0s")
+	# Reset the reverse timer
+	reverse_timer.stop()
+	Global.reverse = false
+	get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
 
+
+func handle_death() -> void:
+	get_node("Player").dead = true
+	get_node("Player").play_death_animation()
+	
 
 # Update the background color every 20 score points
 func update_background_color() -> void:

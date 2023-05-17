@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://b31pinsg12rdg"]
+[gd_scene load_steps=62 format=3 uid="uid://bu80kgljdofg2"]
 
 [ext_resource type="Texture2D" uid="uid://d4d7yxr0m4p34" path="res://assets/background.png" id="1_84b1x"]
 [ext_resource type="Script" path="res://scripts/slime_shop.gd" id="1_j1nv4"]
@@ -23,12 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://cn3aatlmy0hx5" path="res://assets/slimes/orange/idle_4.png" id="21_0p78o"]
 [ext_resource type="Texture2D" uid="uid://ikh08s2q5gc7" path="res://assets/slimes/orange/idle_5.png" id="22_jfd65"]
 [ext_resource type="Texture2D" uid="uid://be2bmoij1rrdv" path="res://assets/slimes/orange/idle_6.png" id="23_qh8lx"]
-[ext_resource type="Texture2D" uid="uid://dcwxpsokpc1x2" path="res://assets/slimes/grey/idle_1.png" id="24_d816p"]
-[ext_resource type="Texture2D" uid="uid://bfi08jewegf2c" path="res://assets/slimes/grey/idle_2.png" id="25_vx574"]
-[ext_resource type="Texture2D" uid="uid://csw7km8iwebqj" path="res://assets/slimes/grey/idle_3.png" id="26_00vts"]
-[ext_resource type="Texture2D" uid="uid://bwxbugygb0vra" path="res://assets/slimes/grey/idle_4.png" id="27_u6jka"]
-[ext_resource type="Texture2D" uid="uid://bart5j7yfbkfc" path="res://assets/slimes/grey/idle_5.png" id="28_ytaqu"]
-[ext_resource type="Texture2D" uid="uid://csikei32gy437" path="res://assets/slimes/grey/idle_6.png" id="29_obxqd"]
+[ext_resource type="Texture2D" uid="uid://dcwxpsokpc1x2" path="res://assets/slimes/gray/idle_1.png" id="24_d3epp"]
+[ext_resource type="Texture2D" uid="uid://bfi08jewegf2c" path="res://assets/slimes/gray/idle_2.png" id="25_ktaxd"]
+[ext_resource type="Texture2D" uid="uid://csw7km8iwebqj" path="res://assets/slimes/gray/idle_3.png" id="26_1kf5w"]
+[ext_resource type="Texture2D" uid="uid://bwxbugygb0vra" path="res://assets/slimes/gray/idle_4.png" id="27_520io"]
+[ext_resource type="Texture2D" uid="uid://bart5j7yfbkfc" path="res://assets/slimes/gray/idle_5.png" id="28_y01x0"]
+[ext_resource type="Texture2D" uid="uid://csikei32gy437" path="res://assets/slimes/gray/idle_6.png" id="29_wv0fw"]
 [ext_resource type="Texture2D" uid="uid://ckpsxevxveheg" path="res://assets/slimes/green/idle_1.png" id="30_gyhkm"]
 [ext_resource type="Texture2D" uid="uid://n0pgeiu6k8q7" path="res://assets/slimes/green/idle_2.png" id="31_bgluv"]
 [ext_resource type="Texture2D" uid="uid://cgbre7qonay2i" path="res://assets/slimes/green/idle_3.png" id="32_ke8nd"]
@@ -137,22 +137,22 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("24_d816p")
+"texture": ExtResource("24_d3epp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("25_vx574")
+"texture": ExtResource("25_ktaxd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("26_00vts")
+"texture": ExtResource("26_1kf5w")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_u6jka")
+"texture": ExtResource("27_520io")
 }, {
 "duration": 1.0,
-"texture": ExtResource("28_ytaqu")
+"texture": ExtResource("28_y01x0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("29_obxqd")
+"texture": ExtResource("29_wv0fw")
 }],
 "loop": true,
 "name": &"Idle",
@@ -251,6 +251,7 @@ position = Vector2(500, 333.5)
 texture = ExtResource("1_84b1x")
 
 [node name="CoinsLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 894.0
 offset_top = 12.0
 offset_right = 913.0
@@ -358,7 +359,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_woivt")
 animation = &"Idle"
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="GreenSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 280.0
@@ -368,7 +369,7 @@ texture_normal = ExtResource("48_4bcfk")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="GraySlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 280.0
@@ -378,7 +379,7 @@ texture_normal = ExtResource("49_apoj8")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton3" type="TextureButton" parent="."]
+[node name="BlueSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 456.0
 offset_top = 280.0
@@ -388,7 +389,7 @@ texture_normal = ExtResource("50_fxapy")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton4" type="TextureButton" parent="."]
+[node name="BrownSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 510.0
@@ -398,7 +399,7 @@ texture_normal = ExtResource("51_cm6i6")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton5" type="TextureButton" parent="."]
+[node name="OrangeSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 510.0
@@ -408,7 +409,7 @@ texture_normal = ExtResource("52_6t1rp")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton6" type="TextureButton" parent="."]
+[node name="RedSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 458.0
 offset_top = 510.0
@@ -418,7 +419,7 @@ texture_normal = ExtResource("53_sfq8h")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton7" type="TextureButton" parent="."]
+[node name="YellowSlimeButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 647.0
 offset_top = 395.0
@@ -427,3 +428,11 @@ offset_bottom = 440.0
 texture_normal = ExtResource("54_b2r2h")
 ignore_texture_size = true
 stretch_mode = 4
+
+[connection signal="pressed" from="GreenSlimeButton" to="." method="_on_green_slime_button_pressed"]
+[connection signal="pressed" from="GraySlimeButton" to="." method="_on_gray_slime_button_pressed"]
+[connection signal="pressed" from="BlueSlimeButton" to="." method="_on_blue_slime_button_pressed"]
+[connection signal="pressed" from="BrownSlimeButton" to="." method="_on_brown_slime_button_pressed"]
+[connection signal="pressed" from="OrangeSlimeButton" to="." method="_on_orange_slime_button_pressed"]
+[connection signal="pressed" from="RedSlimeButton" to="." method="_on_red_slime_button_pressed"]
+[connection signal="pressed" from="YellowSlimeButton" to="." method="_on_yellow_slime_button_pressed"]

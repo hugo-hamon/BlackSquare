@@ -8,10 +8,37 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_i52wa")
 
+[node name="BackgroundColor" type="ColorRect" parent="."]
+show_behind_parent = true
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.639216, 0.913725, 0.572549, 1)
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+visible = false
+show_behind_parent = true
+z_index = 1
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Player" parent="." instance=ExtResource("2_s7fyp")]
 position = Vector2(500, 500)
 
 [node name="GridImage" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(500, 500)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_ccd8l")
@@ -20,7 +47,13 @@ texture = ExtResource("3_ccd8l")
 
 [node name="GameTimer" type="Timer" parent="."]
 
+[node name="ReverseTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="BlackScreenTimer" type="Timer" parent="."]
+
 [node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -37,6 +70,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MaxScoreLabel" type="Label" parent="."]
+z_index = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -53,6 +87,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimeLabel" type="Label" parent="."]
+z_index = 1
 anchors_preset = -1
 anchor_bottom = 0.5
 offset_left = 888.0
@@ -66,14 +101,11 @@ text = "Time: 0s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
-show_behind_parent = true
-custom_minimum_size = Vector2(10, 10)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1000.0
-offset_bottom = 1000.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.639216, 0.913725, 0.572549, 1)
+[node name="ReverseLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 418.0
+offset_top = 176.0
+offset_right = 580.0
+offset_bottom = 221.0
+theme = ExtResource("4_y5lrx")
+text = "INVERSION"
