@@ -1,6 +1,6 @@
 # BlackSquare
 
-BlackSquare est un jeu interactif et innovant développé grâce au moteur de jeu Godot. Le concept du jeu repose sur la manipulation d'un personnage **slime** sur une grille structurée à la manière d'un morpion de 3x3. L'objectif principal est d'éviter avec précision et dextérité une multitude de projectiles, dont la fréquence et la densité augmentent progressivement au fil de la progression.
+BlackSquare est un jeu interactif développé grâce au moteur de jeu Godot. Le concept du jeu repose sur la manipulation d'un personnage **slime** sur une grille structurée à la manière d'un morpion de 3x3. L'objectif principal est d'éviter avec précision et dextérité une multitude de projectiles, dont la fréquence et la densité augmentent progressivement au fil de la progression.
 
 BlackSquare comporte un menu utilisateur ainsi qu'une boutique intégrée, permettant l'acquisition de divers **slimes**. Par ailleurs, le jeu propose une variété de niveaux de difficulté, conçus pour mettre à l'épreuve les compétences et la détermination de chaque joueur.
 
